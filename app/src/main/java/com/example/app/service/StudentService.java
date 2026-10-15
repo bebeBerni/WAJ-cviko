@@ -10,6 +10,8 @@ public interface StudentService {
 
     Student findById(Integer id);
 
+    Student findById(int id);
+
     @Transactional
     Student save(Student student);
 
@@ -17,4 +19,9 @@ public interface StudentService {
     void deleteById(Integer id);
 
     List<Student> findByFirstNameAndLastName(String firstName, String lastName);
+
+    @org.springframework.transaction.annotation.Transactional
+    void deleteById(int id);
+
+    List<Student> getSortedStudents();
 }

@@ -83,4 +83,9 @@ public class StudentRestController {
         return studentService.findByFirstNameAndLastName(firstName, lastName);
     }
 
+    @GetMapping("/students/sorted")
+    public List<Student> getSortedStudents() {
+        return studentService.getSortedStudents();
+    }
+
 }
