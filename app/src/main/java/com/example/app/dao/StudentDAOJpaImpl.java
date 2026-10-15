@@ -23,4 +23,32 @@ public class StudentDAOJpaImpl implements StudentDAO {
         List<Student> students = query.getResultList();
         return students;
     }
+
+    @Override
+    public Student findById(Integer id) {
+        Student student = entityManager.find(Student.class, id);
+        return student;
+    }
+
+    @Override
+    public Student save(Student student) {
+        Student savedStudent = entityManager.merge(student);
+        return savedStudent;
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        Student student = entityManager.find(Student.class, id);
+        entityManager.remove(student);
+    }
+
+    @Override
+    public List<Student> findByFirstNameAndLastName(String firstName, String lastName) {
+        TypedQuery<Student> query = entityManager.createQuery("from Student where firstName=:firstName and lastName=:lastName", Student.class);
+        query.setParameter("firstName", firstName);
+        query.setParameter("lastName", lastName);
+        List<Student> students = query.getResultList();
+        return students;
+    }
+
 }
